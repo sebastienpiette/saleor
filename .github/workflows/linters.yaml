@@ -14,7 +14,7 @@ concurrency:
 jobs:
   linters:
     runs-on: ubuntu-latest
-    container: python:3.12
+    container: python:3.13
     name: Run linters
 
     permissions:

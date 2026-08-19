@@ -40,7 +40,7 @@ Install & setup prerequisites via homebrew:
 ```shell
 brew install libmagic
 brew install uv
-uv python install 3.12
+uv python install 3.13
 ```
 
 Clone this [repository](https://github.com/saleor/saleor) and setup database and additional services in docker:

@@ -1,5 +1,5 @@
 ### Build and install packages
-FROM python:3.12 AS build-python
+FROM python:3.13 AS build-python
 
 RUN apt-get -y update \
   && apt-get install -y gettext \
@@ -18,7 +18,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-install-project --no-editable
 
 ### Final image
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 RUN groupadd -r saleor && useradd -r -g saleor saleor
 
@@ -45,7 +45,7 @@ RUN apt-get update \
 RUN mkdir -p /app/media /app/static \
   && chown -R saleor:saleor /app/
 
-COPY --from=build-python /usr/local/lib/python3.12/site-packages/ /usr/local/lib/python3.12/site-packages/
+COPY --from=build-python /usr/local/lib/python3.13/site-packages/ /usr/local/lib/python3.13/site-packages/
 COPY --from=build-python /usr/local/bin/ /usr/local/bin/
 COPY . /app
 WORKDIR /app
