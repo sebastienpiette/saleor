@@ -16,7 +16,7 @@ permissions: {}
 jobs:
   main:
     runs-on: ubuntu-22.04
-    container: python:3.12-slim
+    container: python:3.13-slim
 
     permissions:
       contents: read

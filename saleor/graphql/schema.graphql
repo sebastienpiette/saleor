@@ -9153,10 +9153,10 @@ type StockSettings @doc(category: "Products") {
 """
 Determine the allocation strategy for the channel.
 
-    PRIORITIZE_SORTING_ORDER - allocate stocks according to the warehouses' order
-    within the channel
+PRIORITIZE_SORTING_ORDER - allocate stocks according to the warehouses' order
+within the channel
 
-    PRIORITIZE_HIGH_STOCK - allocate stock in a warehouse with the most stock
+PRIORITIZE_HIGH_STOCK - allocate stock in a warehouse with the most stock
 """
 enum AllocationStrategyEnum @doc(category: "Products") {
   PRIORITIZE_SORTING_ORDER
@@ -9226,11 +9226,11 @@ scalar Minute
 """
 Determine the mark as paid strategy for the channel.
 
-    TRANSACTION_FLOW - new orders marked as paid will receive a
-    `TransactionItem` object, that will cover the `order.total`.
+TRANSACTION_FLOW - new orders marked as paid will receive a
+`TransactionItem` object, that will cover the `order.total`.
 
-    PAYMENT_FLOW - new orders marked as paid will receive a
-    `Payment` object, that will cover the `order.total`.
+PAYMENT_FLOW - new orders marked as paid will receive a
+`Payment` object, that will cover the `order.total`.
 """
 enum MarkAsPaidStrategyEnum @doc(category: "Channels") {
   TRANSACTION_FLOW
@@ -9303,8 +9303,8 @@ type PaymentSettings {
 """
 Determine the transaction flow strategy.
 
-    AUTHORIZATION - the processed transaction should be only authorized
-    CHARGE - the processed transaction should be charged.
+AUTHORIZATION - the processed transaction should be only authorized
+CHARGE - the processed transaction should be charged.
 """
 enum TransactionFlowStrategyEnum @doc(category: "Payments") {
   AUTHORIZATION
@@ -11834,10 +11834,10 @@ type TransactionItem implements Node & ObjectWithMetadata @doc(category: "Paymen
 """
 Represents possible actions on payment transaction.
 
-    The following actions are possible:
-    CHARGE - Represents the charge action.
-    REFUND - Represents a refund action.
-    CANCEL - Represents a cancel action.
+The following actions are possible:
+CHARGE - Represents the charge action.
+REFUND - Represents a refund action.
+CANCEL - Represents a cancel action.
 """
 enum TransactionActionEnum @doc(category: "Payments") {
   CHARGE
@@ -12842,18 +12842,18 @@ enum PaymentChargeStatusEnum @doc(category: "Payments") {
 """
 Determine a current authorize status for order.
 
-    We treat the order as fully authorized when the sum of authorized and charged funds
-    cover the `order.total`-`order.totalGrantedRefund`.
-    We treat the order as partially authorized when the sum of authorized and charged
-    funds covers only part of the `order.total`-`order.totalGrantedRefund`.
-    We treat the order as not authorized when the sum of authorized and charged funds is
-    0.
+We treat the order as fully authorized when the sum of authorized and charged funds
+cover the `order.total`-`order.totalGrantedRefund`.
+We treat the order as partially authorized when the sum of authorized and charged
+funds covers only part of the `order.total`-`order.totalGrantedRefund`.
+We treat the order as not authorized when the sum of authorized and charged funds is
+0.
 
-    NONE - the funds are not authorized
-    PARTIAL - the funds that are authorized and charged don't cover fully the
-    `order.total`-`order.totalGrantedRefund`
-    FULL - the funds that are authorized and charged fully cover the
-    `order.total`-`order.totalGrantedRefund`
+NONE - the funds are not authorized
+PARTIAL - the funds that are authorized and charged don't cover fully the
+`order.total`-`order.totalGrantedRefund`
+FULL - the funds that are authorized and charged fully cover the
+`order.total`-`order.totalGrantedRefund`
 """
 enum OrderAuthorizeStatusEnum @doc(category: "Orders") {
   NONE
@@ -12864,22 +12864,22 @@ enum OrderAuthorizeStatusEnum @doc(category: "Orders") {
 """
 Determine the current charge status for the order.
 
-    An order is considered overcharged when the sum of the
-    transactionItem's charge amounts exceeds the value of
-    `order.total` - `order.totalGrantedRefund`.
-    If the sum of the transactionItem's charge amounts equals
-    `order.total` - `order.totalGrantedRefund`, we consider the order to be fully
-    charged.
-    If the sum of the transactionItem's charge amounts covers a part of the
-    `order.total` - `order.totalGrantedRefund`, we treat the order as partially charged.
+An order is considered overcharged when the sum of the
+transactionItem's charge amounts exceeds the value of
+`order.total` - `order.totalGrantedRefund`.
+If the sum of the transactionItem's charge amounts equals
+`order.total` - `order.totalGrantedRefund`, we consider the order to be fully
+charged.
+If the sum of the transactionItem's charge amounts covers a part of the
+`order.total` - `order.totalGrantedRefund`, we treat the order as partially charged.
 
-    NONE - the funds are not charged.
-    PARTIAL - the funds that are charged don't cover the
-    `order.total`-`order.totalGrantedRefund`
-    FULL - the funds that are charged fully cover the
-    `order.total`-`order.totalGrantedRefund`
-    OVERCHARGED - the charged funds are bigger than the
-    `order.total`-`order.totalGrantedRefund`
+NONE - the funds are not charged.
+PARTIAL - the funds that are charged don't cover the
+`order.total`-`order.totalGrantedRefund`
+FULL - the funds that are charged fully cover the
+`order.total`-`order.totalGrantedRefund`
+OVERCHARGED - the charged funds are bigger than the
+`order.total`-`order.totalGrantedRefund`
 """
 enum OrderChargeStatusEnum @doc(category: "Orders") {
   NONE
@@ -13431,10 +13431,10 @@ type OrderGrantedRefundLine {
 """
 Represents the status of a granted refund.
 
-    NONE - the refund on related transactionItem is not processed
-    PENDING - the refund on related transactionItem is pending
-    FULL - the refund on related transactionItem is fully processed
-    FAIL - the refund on related transactionItem failed
+NONE - the refund on related transactionItem is not processed
+PENDING - the refund on related transactionItem is pending
+FULL - the refund on related transactionItem is fully processed
+FAIL - the refund on related transactionItem failed
 """
 enum OrderGrantedRefundStatusEnum @doc(category: "Orders") {
   NONE
@@ -13485,27 +13485,27 @@ type TransactionEvent implements Node @doc(category: "Payments") {
 """
 Represents possible event types.
 
-    The following types are possible:
-    AUTHORIZATION_SUCCESS - represents success authorization.
-    AUTHORIZATION_FAILURE - represents failure authorization.
-    AUTHORIZATION_ADJUSTMENT - represents authorization adjustment.
-    AUTHORIZATION_REQUEST - represents authorization request.
-    AUTHORIZATION_ACTION_REQUIRED - represents authorization that needs
-    additional actions from the customer.
-    CHARGE_ACTION_REQUIRED - represents charge that needs
-    additional actions from the customer.
-    CHARGE_SUCCESS - represents success charge.
-    CHARGE_FAILURE - represents failure charge.
-    CHARGE_BACK - represents chargeback.
-    CHARGE_REQUEST - represents charge request.
-    REFUND_SUCCESS - represents success refund.
-    REFUND_FAILURE - represents failure refund.
-    REFUND_REVERSE - represents reverse refund.
-    REFUND_REQUEST - represents refund request.
-    CANCEL_SUCCESS - represents success cancel.
-    CANCEL_FAILURE - represents failure cancel.
-    CANCEL_REQUEST - represents cancel request.
-    INFO - represents info event.
+The following types are possible:
+AUTHORIZATION_SUCCESS - represents success authorization.
+AUTHORIZATION_FAILURE - represents failure authorization.
+AUTHORIZATION_ADJUSTMENT - represents authorization adjustment.
+AUTHORIZATION_REQUEST - represents authorization request.
+AUTHORIZATION_ACTION_REQUIRED - represents authorization that needs
+additional actions from the customer.
+CHARGE_ACTION_REQUIRED - represents charge that needs
+additional actions from the customer.
+CHARGE_SUCCESS - represents success charge.
+CHARGE_FAILURE - represents failure charge.
+CHARGE_BACK - represents chargeback.
+CHARGE_REQUEST - represents charge request.
+REFUND_SUCCESS - represents success refund.
+REFUND_FAILURE - represents failure refund.
+REFUND_REVERSE - represents reverse refund.
+REFUND_REQUEST - represents refund request.
+CANCEL_SUCCESS - represents success cancel.
+CANCEL_FAILURE - represents failure cancel.
+CANCEL_REQUEST - represents cancel request.
+INFO - represents info event.
 """
 enum TransactionEventTypeEnum @doc(category: "Payments") {
   AUTHORIZATION_SUCCESS
@@ -13543,16 +13543,16 @@ interface PaymentMethodDetails {
 """
 Determine a current authorize status for checkout.
 
-    We treat the checkout as fully authorized when the sum of authorized and charged
-    funds cover the checkout.total.
-    We treat the checkout as partially authorized when the sum of authorized and charged
-    funds covers only part of the checkout.total
-    We treat the checkout as not authorized when the sum of authorized and charged funds
-    is 0.
+We treat the checkout as fully authorized when the sum of authorized and charged
+funds cover the checkout.total.
+We treat the checkout as partially authorized when the sum of authorized and charged
+funds covers only part of the checkout.total
+We treat the checkout as not authorized when the sum of authorized and charged funds
+is 0.
 
-    NONE - the funds are not authorized
-    PARTIAL - the cover funds don't cover fully the checkout's total
-    FULL - the cover funds covers the checkout's total
+NONE - the funds are not authorized
+PARTIAL - the cover funds don't cover fully the checkout's total
+FULL - the cover funds covers the checkout's total
 """
 enum CheckoutAuthorizeStatusEnum @doc(category: "Checkout") {
   NONE
@@ -13563,18 +13563,18 @@ enum CheckoutAuthorizeStatusEnum @doc(category: "Checkout") {
 """
 Determine the current charge status for the checkout.
 
-    The checkout is considered overcharged when the sum of the transactionItem's charge
-    amounts exceeds the value of `checkout.total`.
-    If the sum of the transactionItem's charge amounts equals
-    `checkout.total`, we consider the checkout to be fully charged.
-    If the sum of the transactionItem's charge amounts covers a part of the
-    `checkout.total`, we treat the checkout as partially charged.
+The checkout is considered overcharged when the sum of the transactionItem's charge
+amounts exceeds the value of `checkout.total`.
+If the sum of the transactionItem's charge amounts equals
+`checkout.total`, we consider the checkout to be fully charged.
+If the sum of the transactionItem's charge amounts covers a part of the
+`checkout.total`, we treat the checkout as partially charged.
 
 
-    NONE - the funds are not charged.
-    PARTIAL - the funds that are charged don't cover the checkout's total
-    FULL - the funds that are charged fully cover the checkout's total
-    OVERCHARGED - the charged funds are bigger than checkout's total
+NONE - the funds are not charged.
+PARTIAL - the funds that are charged don't cover the checkout's total
+FULL - the funds that are charged fully cover the checkout's total
+OVERCHARGED - the charged funds are bigger than checkout's total
 """
 enum CheckoutChargeStatusEnum @doc(category: "Checkout") {
   NONE
@@ -13617,9 +13617,9 @@ type StoredPaymentMethod @doc(category: "Payments") {
 """
 Represents possible tokenized payment flows that can be used to process payment.
 
-    The following flows are possible:
-    INTERACTIVE - Payment method can be used for 1 click checkout - it's prefilled in
-    checkout form (might require additional authentication from user)
+The following flows are possible:
+INTERACTIVE - Payment method can be used for 1 click checkout - it's prefilled in
+checkout form (might require additional authentication from user)
 """
 enum TokenizedPaymentFlowEnum @doc(category: "Payments") {
   INTERACTIVE
@@ -15463,11 +15463,11 @@ enum AnnouncementImportanceEnum @doc(category: "Shop") {
 """
 Controls whether password-based authentication is allowed.
 
-    ENABLED - any user can log in with a password. This is the default behavior.
-    CUSTOMERS_ONLY - only customer users can log in with a password.
-        If a staff user logs in with a password, they will be treated as a customer
-        — the issued token will not contain any staff permissions.
-    DISABLED - no user can log in with a password.
+ENABLED - any user can log in with a password. This is the default behavior.
+CUSTOMERS_ONLY - only customer users can log in with a password.
+    If a staff user logs in with a password, they will be treated as a customer
+    — the issued token will not contain any staff permissions.
+DISABLED - no user can log in with a password.
 """
 enum PasswordLoginModeEnum @doc(category: "Authentication") {
   ENABLED
@@ -15478,16 +15478,16 @@ enum PasswordLoginModeEnum @doc(category: "Authentication") {
 """
 AccountConfirmMode set the account merging mode for anonymous objects.
 
-    This dictates the behavior of the `confirmAccount()` mutation for
-    password-based authentication when attempting to merge orders & giftcard
-    that aren't associated to a user account.
+This dictates the behavior of the `confirmAccount()` mutation for
+password-based authentication when attempting to merge orders & giftcard
+that aren't associated to a user account.
 
-    Modes:
+Modes:
 
-    - MERGE_DISABLED disables merging only when the authentication method
-      is password (i.e., when not using OIDC)
-    - REQUIRE_PASSWORD enables account merging who accounts that use password
-      authentication but it requires the user to enter their password
+- MERGE_DISABLED disables merging only when the authentication method
+  is password (i.e., when not using OIDC)
+- REQUIRE_PASSWORD enables account merging who accounts that use password
+  authentication but it requires the user to enter their password
 """
 enum AccountConfirmModeEnum @doc(category: "Authentication") {
   MERGE_DISABLED
@@ -16232,10 +16232,10 @@ input PaymentMethodTypeEnumFilterInput {
 """
 Represents possible payment method types.
 
-    The following types are possible:
-    CARD - represents a card payment method.
-    OTHER - represents any payment method that is not a card payment.
-    GIFT_CARD - represents a gift card payment method.
+The following types are possible:
+CARD - represents a card payment method.
+OTHER - represents any payment method that is not a card payment.
+GIFT_CARD - represents a gift card payment method.
 """
 enum PaymentMethodTypeEnum @doc(category: "Payments") {
   CARD
@@ -26939,11 +26939,11 @@ type StoredPaymentMethodRequestDelete @doc(category: "Payments") @webhookEventsI
 """
 Result of deleting a stored payment method.
 
-    This enum is used to determine the result of deleting a stored payment method.
-    SUCCESSFULLY_DELETED - The stored payment method was successfully deleted.
-    FAILED_TO_DELETE - The stored payment method was not deleted.
-    FAILED_TO_DELIVER - The request to delete the stored payment method was not
-    delivered.
+This enum is used to determine the result of deleting a stored payment method.
+SUCCESSFULLY_DELETED - The stored payment method was successfully deleted.
+FAILED_TO_DELETE - The stored payment method was not deleted.
+FAILED_TO_DELIVER - The request to delete the stored payment method was not
+delivered.
 """
 enum StoredPaymentMethodRequestDeleteResult @doc(category: "Payments") {
   SUCCESSFULLY_DELETED
@@ -26992,10 +26992,10 @@ type PaymentGatewayInitializeTokenization @doc(category: "Payments") @webhookEve
 """
 Result of initialize payment gateway for tokenization of payment method.
 
-    The result of initialize payment gateway for tokenization of payment method.
-    SUCCESSFULLY_INITIALIZED - The payment gateway was successfully initialized.
-    FAILED_TO_INITIALIZE - The payment gateway was not initialized.
-    FAILED_TO_DELIVER - The request to initialize payment gateway was not delivered.
+The result of initialize payment gateway for tokenization of payment method.
+SUCCESSFULLY_INITIALIZED - The payment gateway was successfully initialized.
+FAILED_TO_INITIALIZE - The payment gateway was not initialized.
+FAILED_TO_DELIVER - The request to initialize payment gateway was not delivered.
 """
 enum PaymentGatewayInitializeTokenizationResult @doc(category: "Payments") {
   SUCCESSFULLY_INITIALIZED
@@ -27047,12 +27047,12 @@ type PaymentMethodInitializeTokenization @doc(category: "Payments") @webhookEven
 """
 Result of tokenization of payment method.
 
-    SUCCESSFULLY_TOKENIZED - The payment method was successfully tokenized.
-    ADDITIONAL_ACTION_REQUIRED - The additional action is required to tokenize payment
-    method.
-    PENDING - The payment method is pending tokenization.
-    FAILED_TO_TOKENIZE - The payment method was not tokenized.
-    FAILED_TO_DELIVER - The request to tokenize payment method was not delivered.
+SUCCESSFULLY_TOKENIZED - The payment method was successfully tokenized.
+ADDITIONAL_ACTION_REQUIRED - The additional action is required to tokenize payment
+method.
+PENDING - The payment method is pending tokenization.
+FAILED_TO_TOKENIZE - The payment method was not tokenized.
+FAILED_TO_DELIVER - The request to tokenize payment method was not delivered.
 """
 enum PaymentMethodTokenizationResult @doc(category: "Payments") {
   SUCCESSFULLY_TOKENIZED
@@ -28846,9 +28846,9 @@ input OrderBulkCreateInvoiceInput @doc(category: "Orders") {
 """
 Determine how stocks should be updated, while processing an order.
 
-    SKIP - stocks are not checked and not updated.
-    UPDATE - only do update, if there is enough stock.
-    FORCE - force update, if there is not enough stock.
+SKIP - stocks are not checked and not updated.
+UPDATE - only do update, if there is enough stock.
+FORCE - force update, if there is not enough stock.
 """
 enum StockUpdatePolicyEnum {
   SKIP
