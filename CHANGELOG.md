@@ -58,6 +58,7 @@ All notable, unreleased changes to this project will be documented in this file.
 - Dropped the database leftovers of the legacy digital content feature removed in 3.23: the `product_digitalcontent` and `product_digitalcontenturl` tables, and the `automatic_fulfillment_digital_products`, `default_digital_max_downloads` and `default_digital_url_valid_days` columns of `site_sitesettings`. Files uploaded through the legacy API are not removed from the media storage — the `digital_contents/` directory can be deleted manually.
 - `ProductType.is_digital` was removed from the ORM model; the column itself will be dropped in 3.25.
 - Removed the `is_digital` field from the `populatedb` sample data.
+- Upgraded the `redis` Python client to 6.x (`redis>=6,<7`). The `types-redis` stubs were dropped, as redis-py 6 ships its own type hints.
 
 #### Search improvements
 

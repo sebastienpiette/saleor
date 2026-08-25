@@ -1,5 +1,6 @@
 import math
 import zlib
+from typing import cast
 
 from asgiref.local import Local
 from django.conf import settings
@@ -185,7 +186,7 @@ class RedisBuffer(BaseBuffer):
         return result[0]
 
     def size(self) -> int:
-        return self.client.llen(self.key)
+        return cast("int", self.client.llen(self.key))
 
 
 def get_buffer(
